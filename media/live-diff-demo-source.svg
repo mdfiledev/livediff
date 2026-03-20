@@ -1,0 +1,96 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1280" y2="860" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="150" y1="120" x2="1250" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1D4ED8" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#16A34A" stop-opacity="0.12"/>
+    </linearGradient>
+    <filter id="shadow" x="90" y="90" width="1220" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#020617" flood-opacity="0.32"/>
+    </filter>
+    <style>
+      .title { font: 700 56px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #F8FAFC; }
+      .subtitle { font: 400 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #CBD5E1; }
+      .ui { font: 600 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #E2E8F0; }
+      .code { font: 500 22px SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; fill: #E5E7EB; }
+      .lineNo { font: 500 18px SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace; fill: #64748B; }
+      .caption { font: 600 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #E2E8F0; }
+      .chip { font: 700 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #F8FAFC; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect width="1400" height="900" fill="url(#hero)"/>
+
+  <text x="140" y="130" class="title">Live Diff</text>
+  <text x="140" y="174" class="subtitle">Keep both sides editable and watch the diff update while you type.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="220" width="1160" height="520" rx="28" fill="#0B1220" stroke="#334155" stroke-width="2"/>
+    <rect x="120" y="220" width="1160" height="68" rx="28" fill="#131C2E"/>
+    <rect x="120" y="260" width="1160" height="28" fill="#131C2E"/>
+
+    <circle cx="164" cy="254" r="9" fill="#F87171"/>
+    <circle cx="192" cy="254" r="9" fill="#FBBF24"/>
+    <circle cx="220" cy="254" r="9" fill="#34D399"/>
+
+    <text x="270" y="261" class="caption">Live Diff 1</text>
+
+    <rect x="156" y="320" width="500" height="370" rx="18" fill="#0F172A" stroke="#334155"/>
+    <rect x="744" y="320" width="500" height="370" rx="18" fill="#0F172A" stroke="#334155"/>
+    <rect x="686" y="320" width="28" height="370" rx="14" fill="#14213A" stroke="#2E5BFF" stroke-opacity="0.45"/>
+
+    <text x="182" y="356" class="ui">Left</text>
+    <text x="770" y="356" class="ui">Right</text>
+
+    <rect x="176" y="384" width="460" height="54" rx="12" fill="rgba(46,160,67,0.10)"/>
+    <rect x="176" y="444" width="460" height="54" rx="12" fill="rgba(210,153,34,0.10)"/>
+    <rect x="176" y="504" width="460" height="54" rx="12" fill="rgba(248,81,73,0.10)"/>
+
+    <rect x="764" y="384" width="460" height="54" rx="12" fill="rgba(46,160,67,0.12)"/>
+    <rect x="764" y="444" width="460" height="54" rx="12" fill="rgba(210,153,34,0.12)"/>
+    <rect x="764" y="564" width="460" height="54" rx="12" fill="rgba(46,160,67,0.12)"/>
+
+    <text x="196" y="419" class="lineNo">1</text>
+    <text x="230" y="419" class="code">name: "Ada Lovelace"</text>
+    <text x="784" y="419" class="lineNo">1</text>
+    <text x="818" y="419" class="code">name: "Ada Lovelace"</text>
+
+    <text x="196" y="479" class="lineNo">2</text>
+    <text x="230" y="479" class="code">title: "Analyst"</text>
+    <text x="784" y="479" class="lineNo">2</text>
+    <text x="818" y="479" class="code">title: "Lead </text>
+    <rect x="963" y="456" width="116" height="34" rx="8" fill="rgba(210,153,34,0.46)"/>
+    <text x="977" y="479" class="code">Analyst"</text>
+
+    <text x="196" y="539" class="lineNo">3</text>
+    <text x="230" y="539" class="code">team: "Research"</text>
+
+    <text x="784" y="539" class="lineNo">3</text>
+    <text x="818" y="539" class="code">team: "Research"</text>
+
+    <text x="784" y="599" class="lineNo">4</text>
+    <text x="818" y="599" class="code">status: "active"</text>
+
+    <rect x="170" y="394" width="6" height="34" rx="3" fill="#2EA043"/>
+    <rect x="170" y="454" width="6" height="34" rx="3" fill="#D29922"/>
+    <rect x="170" y="514" width="6" height="34" rx="3" fill="#F85149"/>
+    <rect x="758" y="394" width="6" height="34" rx="3" fill="#2EA043"/>
+    <rect x="758" y="454" width="6" height="34" rx="3" fill="#D29922"/>
+    <rect x="758" y="574" width="6" height="34" rx="3" fill="#2EA043"/>
+
+    <text x="176" y="644" class="subtitle">Edit either side. The diff stays visible and refreshes immediately.</text>
+  </g>
+
+  <rect x="140" y="780" width="188" height="44" rx="22" fill="#2563EB"/>
+  <text x="178" y="808" class="chip">Always editable</text>
+
+  <rect x="344" y="780" width="216" height="44" rx="22" fill="#0F766E"/>
+  <text x="381" y="808" class="chip">Updates instantly</text>
+
+  <rect x="576" y="780" width="236" height="44" rx="22" fill="#7C3AED"/>
+  <text x="610" y="808" class="chip">No save step required</text>
+</svg>

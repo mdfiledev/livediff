@@ -1,0 +1,66 @@
+{
+  "name": "live-diff",
+  "displayName": "Live Diff",
+  "description": "A live side-by-side diff for editable text, with instant updates while you type.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "icon": "media/live-diff-icon.png",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdfiledev/livediff.git"
+  },
+  "homepage": "https://github.com/mdfiledev/livediff#readme",
+  "bugs": {
+    "url": "https://github.com/mdfiledev/livediff/issues"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "diff",
+    "compare",
+    "live diff",
+    "text compare",
+    "editor",
+    "scratch diff"
+  ],
+  "activationEvents": [
+    "onCommand:livediff.open"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "livediff.open",
+        "title": "Live Diff: Open Comparison"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "livediff.open",
+        "key": "cmd+ctrl+shift+d",
+        "mac": "cmd+ctrl+shift+d",
+        "when": "editorTextFocus || !editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node --test test/diff.test.js",
+    "install-local": "npm run compile && node scripts/install-local.js"
+  },
+  "dependencies": {
+    "diff": "^8.0.3",
+    "monaco-editor": "^0.52.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.11",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.6.3"
+  }
+}

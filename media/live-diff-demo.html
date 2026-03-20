@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Diff Demo</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --page-background: #0b1020;
+        --page-accent: rgba(59, 130, 246, 0.22);
+        --page-accent-2: rgba(16, 185, 129, 0.12);
+        --panel-background: #111827;
+        --panel-border: rgba(148, 163, 184, 0.2);
+        --header-background: #0f172a;
+        --header-text: #f8fafc;
+        --muted-text: #94a3b8;
+        --editor-background: #0f172a;
+        --editor-foreground: #e5e7eb;
+        --insert-line: rgba(46, 160, 67, 0.16);
+        --delete-line: rgba(248, 81, 73, 0.12);
+        --modify-line: rgba(210, 153, 34, 0.14);
+        --insert-inline: rgba(46, 160, 67, 0.42);
+        --delete-inline: rgba(248, 81, 73, 0.38);
+        --modify-inline: rgba(210, 153, 34, 0.46);
+        --insert-glyph: #2ea043;
+        --delete-glyph: #f85149;
+        --modify-glyph: #d29922;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at top left, var(--page-accent), transparent 30%),
+          radial-gradient(circle at bottom right, var(--page-accent-2), transparent 28%),
+          var(--page-background);
+        color: var(--header-text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .frame {
+        width: 1400px;
+        padding: 44px;
+      }
+
+      .title {
+        margin: 0 0 10px;
+        font-size: 56px;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      .subtitle {
+        margin: 0 0 28px;
+        font-size: 24px;
+        color: #cbd5e1;
+      }
+
+      .window {
+        border: 1px solid var(--panel-border);
+        border-radius: 24px;
+        overflow: hidden;
+        background: rgba(9, 14, 28, 0.94);
+        box-shadow: 0 28px 80px rgba(2, 6, 23, 0.42);
+      }
+
+      .window-bar {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 22px;
+        background: #121a2b;
+        border-bottom: 1px solid var(--panel-border);
+      }
+
+      .traffic {
+        display: flex;
+        gap: 10px;
+      }
+
+      .traffic span {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        display: block;
+      }
+
+      .traffic span:nth-child(1) { background: #fb7185; }
+      .traffic span:nth-child(2) { background: #fbbf24; }
+      .traffic span:nth-child(3) { background: #34d399; }
+
+      .window-title {
+        font-size: 22px;
+        font-weight: 600;
+      }
+
+      .app-shell {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-height: 620px;
+      }
+
+      .app-header {
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--panel-border);
+        background:
+          radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 36%),
+          var(--header-background);
+      }
+
+      .app-header h1 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .app-header p {
+        margin: 8px 0 0;
+        font-size: 13px;
+        color: var(--muted-text);
+      }
+
+      .editor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        padding: 14px;
+      }
+
+      .editor-column {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        min-width: 0;
+        border: 1px solid var(--panel-border);
+        border-radius: 16px;
+        overflow: hidden;
+        background: color-mix(in srgb, var(--editor-background) 92%, black);
+      }
+
+      .editor-label {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--panel-border);
+        color: var(--muted-text);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .editor {
+        padding: 10px 0;
+        background: var(--editor-background);
+        color: var(--editor-foreground);
+        font: 15px/1.65 SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      }
+
+      .line {
+        display: grid;
+        grid-template-columns: 40px 6px 1fr;
+        align-items: center;
+        min-height: 42px;
+      }
+
+      .line-number {
+        padding-left: 12px;
+        color: #64748b;
+        font-size: 13px;
+      }
+
+      .gutter {
+        height: 100%;
+      }
+
+      .content {
+        padding: 0 14px;
+        white-space: pre;
+      }
+
+      .insert {
+        background: var(--insert-line);
+      }
+
+      .delete {
+        background: var(--delete-line);
+      }
+
+      .modify {
+        background: var(--modify-line);
+      }
+
+      .insert .gutter { background: var(--insert-glyph); }
+      .delete .gutter { background: var(--delete-glyph); }
+      .modify .gutter { background: var(--modify-glyph); }
+
+      .inline-insert,
+      .inline-delete,
+      .inline-modify {
+        border-radius: 5px;
+        padding: 4px 2px;
+      }
+
+      .inline-insert { background: var(--insert-inline); }
+      .inline-delete { background: var(--delete-inline); }
+      .inline-modify { background: var(--modify-inline); }
+
+      .footer {
+        display: flex;
+        gap: 14px;
+        padding-top: 22px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 18px;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: 700;
+        color: white;
+      }
+
+      .pill-blue { background: #2563eb; }
+      .pill-green { background: #0f766e; }
+      .pill-purple { background: #7c3aed; }
+    </style>
+  </head>
+  <body>
+    <main class="frame">
+      <h1 class="title">Live Diff</h1>
+      <p class="subtitle">Edit both sides and watch the diff refresh immediately.</p>
+
+      <section class="window">
+        <div class="window-bar">
+          <div class="traffic">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="window-title">Live Diff 1</div>
+        </div>
+
+        <div class="app-shell">
+          <header class="app-header">
+            <h1>Live Diff</h1>
+            <p>Type or paste content into both panes to render a live side-by-side diff.</p>
+          </header>
+
+          <div class="editor-grid">
+            <section class="editor-column">
+              <div class="editor-label">Left</div>
+              <div class="editor">
+                <div class="line insert">
+                  <div class="line-number">1</div>
+                  <div class="gutter"></div>
+                  <div class="content">name: "Ada Lovelace"</div>
+                </div>
+                <div class="line modify">
+                  <div class="line-number">2</div>
+                  <div class="gutter"></div>
+                  <div class="content">title: "<span class="inline-modify">Analyst</span>"</div>
+                </div>
+                <div class="line delete">
+                  <div class="line-number">3</div>
+                  <div class="gutter"></div>
+                  <div class="content">status: "draft"</div>
+                </div>
+                <div class="line">
+                  <div class="line-number">4</div>
+                  <div class="gutter"></div>
+                  <div class="content">team: "Research"</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="editor-column">
+              <div class="editor-label">Right</div>
+              <div class="editor">
+                <div class="line insert">
+                  <div class="line-number">1</div>
+                  <div class="gutter"></div>
+                  <div class="content">name: "Ada Lovelace"</div>
+                </div>
+                <div class="line modify">
+                  <div class="line-number">2</div>
+                  <div class="gutter"></div>
+                  <div class="content">title: "Lead <span class="inline-modify">Analyst</span>"</div>
+                </div>
+                <div class="line">
+                  <div class="line-number">3</div>
+                  <div class="gutter"></div>
+                  <div class="content">team: "Research"</div>
+                </div>
+                <div class="line insert">
+                  <div class="line-number">4</div>
+                  <div class="gutter"></div>
+                  <div class="content">status: "<span class="inline-insert">active</span>"</div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        <span class="pill pill-blue">Always editable</span>
+        <span class="pill pill-green">Updates instantly</span>
+        <span class="pill pill-purple">No save step required</span>
+      </div>
+    </main>
+  </body>
+</html>

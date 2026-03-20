@@ -1,0 +1,158 @@
+:root {
+  color-scheme: light dark;
+  --panel-background: var(--vscode-editor-background);
+  --panel-border: color-mix(in srgb, var(--vscode-panel-border) 70%, transparent);
+  --header-background: color-mix(in srgb, var(--vscode-sideBar-background) 75%, var(--vscode-editor-background));
+  --header-text: var(--vscode-foreground);
+  --muted-text: var(--vscode-descriptionForeground);
+  --insert-line: rgba(46, 160, 67, 0.14);
+  --delete-line: rgba(207, 34, 46, 0.1);
+  --modify-line: rgba(191, 135, 0, 0.1);
+  --insert-inline: rgba(46, 160, 67, 0.38);
+  --delete-inline: rgba(207, 34, 46, 0.34);
+  --modify-inline: rgba(191, 135, 0, 0.42);
+  --insert-glyph: #1a7f37;
+  --delete-glyph: #cf222e;
+  --modify-glyph: #9a6700;
+}
+
+body.vscode-dark,
+body.vscode-high-contrast-dark,
+body.vscode-high-contrast {
+  --insert-line: rgba(46, 160, 67, 0.16);
+  --delete-line: rgba(248, 81, 73, 0.12);
+  --modify-line: rgba(210, 153, 34, 0.14);
+  --insert-inline: rgba(46, 160, 67, 0.42);
+  --delete-inline: rgba(248, 81, 73, 0.38);
+  --modify-inline: rgba(210, 153, 34, 0.46);
+  --insert-glyph: #2ea043;
+  --delete-glyph: #f85149;
+  --modify-glyph: #d29922;
+}
+
+body.vscode-high-contrast-light {
+  --insert-line: rgba(46, 160, 67, 0.16);
+  --delete-line: rgba(207, 34, 46, 0.12);
+  --modify-line: rgba(191, 135, 0, 0.12);
+  --insert-inline: rgba(46, 160, 67, 0.46);
+  --delete-inline: rgba(207, 34, 46, 0.4);
+  --modify-inline: rgba(191, 135, 0, 0.48);
+  --insert-glyph: #055d20;
+  --delete-glyph: #a0111f;
+  --modify-glyph: #7d4e00;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--panel-background);
+  color: var(--header-text);
+  font-family: var(--vscode-font-family);
+}
+
+body {
+  overflow: hidden;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+
+.app-header {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--panel-border);
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--vscode-textLink-foreground) 18%, transparent), transparent 42%),
+    var(--header-background);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted-text);
+}
+
+.editor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 12px;
+  min-height: 0;
+}
+
+.editor-column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--vscode-editor-background) 92%, var(--vscode-sideBar-background));
+}
+
+.editor-label {
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--panel-border);
+  color: var(--muted-text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.editor-surface {
+  min-height: 0;
+}
+
+.monaco-editor .paste-diff-line-insert {
+  background: var(--insert-line);
+}
+
+.monaco-editor .paste-diff-line-delete {
+  background: var(--delete-line);
+}
+
+.monaco-editor .paste-diff-line-modify {
+  background: var(--modify-line);
+}
+
+.monaco-editor .margin.paste-diff-margin-insert {
+  background: linear-gradient(180deg, var(--insert-glyph), color-mix(in srgb, var(--insert-glyph) 35%, transparent));
+}
+
+.monaco-editor .margin.paste-diff-margin-delete {
+  background: linear-gradient(180deg, var(--delete-glyph), color-mix(in srgb, var(--delete-glyph) 35%, transparent));
+}
+
+.monaco-editor .margin.paste-diff-margin-modify {
+  background: linear-gradient(180deg, var(--modify-glyph), color-mix(in srgb, var(--modify-glyph) 35%, transparent));
+}
+
+.monaco-editor .paste-diff-inline-insert {
+  background: var(--insert-inline);
+  border-radius: 2px;
+}
+
+.monaco-editor .paste-diff-inline-delete {
+  background: var(--delete-inline);
+  border-radius: 2px;
+}
+
+.monaco-editor .paste-diff-inline-modify {
+  background: var(--modify-inline);
+  border-radius: 2px;
+}
