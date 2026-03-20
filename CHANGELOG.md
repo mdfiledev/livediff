@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.2
+
+- Reduce VSIX size by bundling Monaco webview assets instead of shipping the full Monaco package.
+- Improve release metadata, icon, and extension details content.
+- Refresh the packaged demo screenshot and Marketplace presentation.
+
 ## 0.0.1
 
 - Initial release of Live Diff.

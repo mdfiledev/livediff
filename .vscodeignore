@@ -1,6 +1,11 @@
 .vscode/**
 .git/**
+.gitignore
+.nvmrc
 out/test/**
+out/**/*.map
+out/webview.js
+out/editor.worker.js
 src/**
 test/**
 scripts/**

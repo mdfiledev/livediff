@@ -15,7 +15,7 @@ const legacyDirs = [
 
 const entriesToCopy = [
   'media',
-  'node_modules',
+  'node_modules/diff',
   'out',
   'package.json',
   'package-lock.json',

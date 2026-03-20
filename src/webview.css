@@ -1,3 +1,5 @@
+@import "../node_modules/monaco-editor/min/vs/editor/editor.main.css";
+
 :root {
   color-scheme: light dark;
   --panel-background: var(--vscode-editor-background);
@@ -130,15 +132,15 @@ body {
   background: var(--modify-line);
 }
 
-.monaco-editor .margin.paste-diff-margin-insert {
+.monaco-editor .paste-diff-margin-insert {
   background: linear-gradient(180deg, var(--insert-glyph), color-mix(in srgb, var(--insert-glyph) 35%, transparent));
 }
 
-.monaco-editor .margin.paste-diff-margin-delete {
+.monaco-editor .paste-diff-margin-delete {
   background: linear-gradient(180deg, var(--delete-glyph), color-mix(in srgb, var(--delete-glyph) 35%, transparent));
 }
 
-.monaco-editor .margin.paste-diff-margin-modify {
+.monaco-editor .paste-diff-margin-modify {
   background: linear-gradient(180deg, var(--modify-glyph), color-mix(in srgb, var(--modify-glyph) 35%, transparent));
 }
 

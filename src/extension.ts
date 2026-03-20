@@ -27,10 +27,7 @@ export function activate(context: vscode.ExtensionContext): void {
         {
           enableScripts: true,
           retainContextWhenHidden: true,
-          localResourceRoots: [
-            vscode.Uri.joinPath(context.extensionUri, 'media'),
-            vscode.Uri.joinPath(context.extensionUri, 'node_modules')
-          ]
+          localResourceRoots: [vscode.Uri.joinPath(context.extensionUri, 'media')]
         }
       );
 
@@ -89,18 +86,14 @@ function scheduleDiffUpdate(session: SessionState): void {
 
 function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri): string {
   const nonce = createNonce();
-  const stylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'styles.css'));
+  const stylesUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'main.css'));
   const appScriptUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, 'media', 'main.js'));
-  const monacoLoaderUri = webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, 'node_modules', 'monaco-editor', 'min', 'vs', 'loader.js')
-  );
-  const monacoBaseUri = webview.asWebviewUri(
-    vscode.Uri.joinPath(extensionUri, 'node_modules', 'monaco-editor', 'min', 'vs')
+  const editorWorkerUri = webview.asWebviewUri(
+    vscode.Uri.joinPath(extensionUri, 'media', 'editor.worker.js')
   );
 
   const bootstrap = JSON.stringify({
-    monacoLoaderUri: monacoLoaderUri.toString(),
-    monacoBaseUri: monacoBaseUri.toString()
+    editorWorkerUri: editorWorkerUri.toString()
   });
 
   return `<!DOCTYPE html>
