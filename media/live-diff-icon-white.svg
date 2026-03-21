@@ -1,0 +1,43 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">LiveDiff icon</title>
+  <desc id="desc">A split diff icon with a removed line on the left and an added line on the right.</desc>
+  <defs>
+    <linearGradient id="panel" x1="58" y1="54" x2="198" y2="206" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="divider" x1="118" y1="58" x2="138" y2="198" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#DBEAFE"/>
+      <stop offset="1" stop-color="#BFDBFE"/>
+    </linearGradient>
+    <filter id="shadow" x="24" y="20" width="208" height="216" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#94A3B8" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="58" y="54" width="60" height="148" rx="16" fill="url(#panel)" stroke="#CBD5E1" stroke-width="2"/>
+    <rect x="138" y="54" width="60" height="148" rx="16" fill="url(#panel)" stroke="#CBD5E1" stroke-width="2"/>
+
+    <rect x="118" y="62" width="20" height="132" rx="10" fill="url(#divider)" stroke="#60A5FA" stroke-width="1.5"/>
+    <path d="M124 88H132" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M124 108H132" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M124 128H132" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M124 148H132" stroke="#2563EB" stroke-width="3.5" stroke-linecap="round"/>
+
+    <rect x="68" y="78" width="40" height="16" rx="8" fill="#FEE2E2"/>
+    <path d="M78 86H98" stroke="#DC2626" stroke-width="3.5" stroke-linecap="round"/>
+
+    <rect x="68" y="114" width="30" height="12" rx="6" fill="#E2E8F0"/>
+    <rect x="68" y="136" width="38" height="12" rx="6" fill="#E2E8F0"/>
+    <rect x="68" y="158" width="24" height="12" rx="6" fill="#E2E8F0"/>
+
+    <rect x="148" y="78" width="40" height="16" rx="8" fill="#DCFCE7"/>
+    <path d="M168 81V97" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M160 89H176" stroke="#16A34A" stroke-width="3.5" stroke-linecap="round"/>
+
+    <rect x="148" y="114" width="30" height="12" rx="6" fill="#E2E8F0"/>
+    <rect x="148" y="136" width="44" height="12" rx="6" fill="#FEF3C7"/>
+    <rect x="148" y="158" width="26" height="12" rx="6" fill="#E2E8F0"/>
+  </g>
+</svg>

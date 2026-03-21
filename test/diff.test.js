@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const { buildDecorations } = require('../out/diff.js');
+const { createEditorOptions } = require('../out/editorOptions.js');
 
 test('returns no decorations when either side is empty or whitespace only', () => {
   assert.deepStrictEqual(buildDecorations('', 'value'), {
@@ -111,4 +112,14 @@ test('handles larger inputs without throwing and still reports differences', () 
 
   assert.ok(decorations.left.lines.length > 0);
   assert.ok(decorations.right.lines.length > 0);
+});
+
+test('editor options enable wrapped lines while preserving core editor defaults', () => {
+  const options = createEditorOptions('Type or paste left content here');
+
+  assert.equal(options.wordWrap, 'on');
+  assert.equal(options.scrollBeyondLastLine, false);
+  assert.equal(options.glyphMargin, true);
+  assert.equal(options.lineNumbers, 'on');
+  assert.equal(options.placeholder, 'Type or paste left content here');
 });

@@ -1,8 +1,8 @@
 {
   "name": "live-diff",
-  "displayName": "Live Diff",
+  "displayName": "LiveDiff",
   "description": "A live side-by-side diff for editable text, with instant updates while you type.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "mdfiledev",
   "icon": "media/live-diff-icon.png",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "commands": [
       {
         "command": "livediff.open",
-        "title": "Live Diff: Open Comparison"
+        "title": "LiveDiff: Open Comparison"
       }
     ],
     "keybindings": [

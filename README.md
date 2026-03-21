@@ -1,12 +1,14 @@
-# Live Diff
+# LiveDiff
 
-Live Diff is built for one job: compare text while you are still editing it.
+LiveDiff is built for one job: compare text while you are still editing it.
 
-Most diff tools make you stop, save, switch views, or reopen a comparison every time the content changes. Live Diff keeps two editable panes open side by side and refreshes the diff immediately as you type or paste, so the comparison never interrupts the flow of editing.
+Launch it with `Cmd+Ctrl+Shift+D` or run `LiveDiff: Open Comparison` from the Command Palette.
 
-![Live Diff demo](media/live-diff-demo.png)
+Most diff tools make you stop, save, switch views, or reopen a comparison every time the content changes. LiveDiff keeps two editable panes open side by side and refreshes the diff immediately as you type or paste, so the comparison never interrupts the flow of editing.
 
-## Why it is called Live Diff
+![LiveDiff demo](media/live-diff-demo.png)
+
+## Why it is called LiveDiff
 
 The diff is always on and always current.
 
@@ -24,6 +26,6 @@ The diff is always on and always current.
 
 ## Quick Start
 
-1. Run `Live Diff: Open Comparison`.
+1. Run `LiveDiff: Open Comparison`.
 2. Paste or type content into the left and right panes.
 3. Edit either side and watch the diff update live.

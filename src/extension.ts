@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext): void {
       const sessionId = ++sessionCounter;
       const panel = vscode.window.createWebviewPanel(
         'livediff.session',
-        `Live Diff ${sessionId}`,
+        `LiveDiff ${sessionId}`,
         vscode.ViewColumn.Active,
         {
           enableScripts: true,
@@ -105,14 +105,14 @@ function getWebviewHtml(webview: vscode.Webview, extensionUri: vscode.Uri): stri
       content="default-src 'none'; img-src ${webview.cspSource} data:; style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}' ${webview.cspSource}; font-src ${webview.cspSource} data:; worker-src blob: data: ${webview.cspSource};"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Diff</title>
+    <title>LiveDiff</title>
     <link nonce="${nonce}" rel="stylesheet" href="${stylesUri}" />
   </head>
   <body>
     <div class="app-shell">
       <header class="app-header">
         <div>
-          <h1>Live Diff</h1>
+          <h1>LiveDiff</h1>
           <p>Type or paste content into both panes to render a live side-by-side diff.</p>
         </div>
       </header>

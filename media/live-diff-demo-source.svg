@@ -25,7 +25,7 @@
   <rect width="1400" height="900" fill="url(#bg)"/>
   <rect width="1400" height="900" fill="url(#hero)"/>
 
-  <text x="140" y="130" class="title">Live Diff</text>
+  <text x="140" y="130" class="title">LiveDiff</text>
   <text x="140" y="174" class="subtitle">Keep both sides editable and watch the diff update while you type.</text>
 
   <g filter="url(#shadow)">
@@ -37,7 +37,7 @@
     <circle cx="192" cy="254" r="9" fill="#FBBF24"/>
     <circle cx="220" cy="254" r="9" fill="#34D399"/>
 
-    <text x="270" y="261" class="caption">Live Diff 1</text>
+    <text x="270" y="261" class="caption">LiveDiff 1</text>
 
     <rect x="156" y="320" width="500" height="370" rx="18" fill="#0F172A" stroke="#334155"/>
     <rect x="744" y="320" width="500" height="370" rx="18" fill="#0F172A" stroke="#334155"/>

@@ -19,6 +19,7 @@
   },
   "include": [
     "src/diff.ts",
+    "src/editorOptions.ts",
     "src/extension.ts"
   ]
 }

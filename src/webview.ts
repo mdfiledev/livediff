@@ -1,4 +1,5 @@
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
+import { createEditorOptions } from './editorOptions';
 import './webview.css';
 
 declare function acquireVsCodeApi(): {
@@ -34,7 +35,7 @@ const leftContainer = document.getElementById('left-editor');
 const rightContainer = document.getElementById('right-editor');
 
 if (!leftContainer || !rightContainer) {
-  throw new Error('Live Diff editor containers are missing.');
+  throw new Error('LiveDiff editor containers are missing.');
 }
 
 self.MonacoEnvironment = {
@@ -106,21 +107,7 @@ function createEditor(
   container: HTMLElement,
   placeholder: string
 ): monaco.editor.IStandaloneCodeEditor {
-  return monaco.editor.create(container, {
-    value: '',
-    language: 'plaintext',
-    automaticLayout: false,
-    fontSize: 13,
-    minimap: { enabled: false },
-    scrollBeyondLastLine: false,
-    wordWrap: 'off',
-    lineNumbers: 'on',
-    glyphMargin: true,
-    overviewRulerLanes: 0,
-    renderLineHighlight: 'none',
-    theme: 'live-diff-theme',
-    placeholder
-  });
+  return monaco.editor.create(container, createEditorOptions(placeholder));
 }
 
 function setEditorValue(editor: monaco.editor.IStandaloneCodeEditor, value: string): void {

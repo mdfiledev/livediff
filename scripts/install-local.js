@@ -40,5 +40,5 @@ for (const entry of entriesToCopy) {
   fs.cpSync(source, destination, { recursive: true });
 }
 
-console.log(`Installed Live Diff to ${targetDir}`);
+console.log(`Installed LiveDiff to ${targetDir}`);
 console.log('Restart VS Code to load the updated extension.');
